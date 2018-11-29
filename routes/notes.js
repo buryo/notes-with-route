@@ -1,10 +1,10 @@
 const fs = require('fs');
 const express = require('express');
 const router = express.Router();
-const json = JSON.parse(fs.readFileSync('data.json', 'utf8'));
+
 
 // Loop through json array and look for the title
-let getNote = (title) => {
+let getNote = (title, json) => {
     return json.find(item => {
         return item.title === title;
     });
@@ -25,7 +25,8 @@ router.post('/add-note', (req, res, next) => {
         If :note exist, it gives a message only
         Else :push the new note object to our json file
      */
-    if (getNote(req.body.title)) {
+    let json = JSON.parse(fs.readFileSync('data.json', 'utf8'));
+    if (getNote(req.body.title, json)) {
         res.send('Note bestaat al!');
     } else {
         json.push(req.body);
@@ -40,6 +41,7 @@ router.post('/add-note', (req, res, next) => {
  */
 router.get('/all-notes', (req, res, next) => {
     //Render view with the json array
+    let json = JSON.parse(fs.readFileSync('data.json', 'utf8'));
     res.render('notes', {notes: json});
 });
 
@@ -60,8 +62,9 @@ router.post('/get-note', (req, res, next) => {
         true: render the note with note object
         false: render only note page, without data
      */
-    if (getNote(req.body.title)) {
-        res.render('note', {note: getNote(req.body.title)})
+    let json = JSON.parse(fs.readFileSync('data.json', 'utf8'));
+    if (getNote(req.body.title, json)) {
+        res.render('note', {note: getNote(req.body.title, json)})
     } else {
         res.render('note');
     }
@@ -78,7 +81,8 @@ router.get('/delete-note', (req, res, next) => {
     To delete a note
  */
 router.post('/delete-note', (req, res, next) => {
-    if (getNote(req.body.title)) {
+    let json = JSON.parse(fs.readFileSync('data.json', 'utf8'));
+    if (getNote(req.body.title, json)) {
         let data = json.filter(object => object.title !== req.body.title);
         fs.writeFileSync('./data.json', JSON.stringify(data));
         res.send("Note has been removed amigo!");
