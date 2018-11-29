@@ -27,7 +27,7 @@ router.post('/get-note', (req, res, next) => {
 });
 
 router.get('/delete-note', (req, res, next) => {
-    res.render('delete-not');
+    res.render('delete-note');
 });
 
 router.get('/', (req, res, next) => {
