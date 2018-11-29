@@ -1,0 +1,9 @@
+{
+  "name": "notes-with-route",
+  "version": "1.0.0",
+  "dependencies": {
+    "body-parser": "latest",
+    "ejs": "^2.6.1",
+    "express": "latest"
+  }
+}

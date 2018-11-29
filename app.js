@@ -1,18 +1,14 @@
 const express = require('express');
-
 const bodyParser = require('body-parser');
-
-const notesRoutes = require('./routes/notes.js');
+const routes = require('./routes/notes.js');
+const path = require('path');
 
 const app = express();
 
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
 app.use(bodyParser.urlencoded({extended:false}));
-
-app.use(notesRoutes);
-
-app.get('/', (req, res, next) => {
-   console.log('In de middleware');
-   res.send('<h1>Goedemiddag allemaal</h1>')
-});
+app.use(routes);
 
 app.listen(4000);

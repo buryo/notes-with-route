@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css">
+    <link rel="stylesheet" href="">
+    <title>Home page</title>
+</head>
+<body>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            Notes APP
+        </a>
+
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+            <a class="navbar-item" href="/">
+                Home
+            </a>
+
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                    Notes
+                </a>
+
+                <div class="navbar-dropdown">
+                    <a class="navbar-item" href="/all-notes">
+                        All Notes
+                    </a>
+                    <a class="navbar-item" href="/add-note">
+                        Add note
+                    </a>
+                    <a class="navbar-item" href="/get-note">
+                        Search Note
+                    </a>
+                    <a class="navbar-item" href="/delete-note">
+                        Delete Note
+                    </a>
+                    <hr class="navbar-divider">
+                    <a class="navbar-item" href="https://www.github.com/buryo" target="_blank">
+                        Check my github!
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <h1>All notes comes here...</h1>
+    <hr>
+    <ul class="list-group">
+        <% notes.forEach(function(note) { %>
+            <li class="list-group-item mb-2">Title: <%= note.title %> <br> Description: <%= note.description %></li>
+        <% }); %>
+    </ul>
+</div>
+</body>
+</html>
